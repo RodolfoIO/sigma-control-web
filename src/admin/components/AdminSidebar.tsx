@@ -3,6 +3,7 @@ import { Calendar, Home, Inbox } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -12,6 +13,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link } from "react-router"
+import { UserAvatar } from "./UserAvatar"
+import type { User } from "@/interfaces/user.interface"
 
 // Menu items.
 const items = [
@@ -33,6 +36,12 @@ const items = [
 ]
 
 export const AdminSidebar = () => {
+  const user:Partial<User>= {
+    nombres: "Fredy",
+    apellidos: "Castillo",
+    correo: "sigmainternet.info@gmail.com",
+    avatar: "/FREDY-CASTILLO.jpeg"
+  }
   return (
     <Sidebar>
       <SidebarHeader>
@@ -60,6 +69,9 @@ export const AdminSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <UserAvatar user={user} />
+      </SidebarFooter>
     </Sidebar>
   )
 }
