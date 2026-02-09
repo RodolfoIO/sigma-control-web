@@ -38,13 +38,13 @@ export const AdminClientPage = () => {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
-  const watchedNacimiento = watch("nacimiento_codigo");
+  const formWatched = watch();
+
   const findedNacimiento = guatemalaLocation.find(
-    (c) => c.city_id === +watchedNacimiento,
+    (c) => c.city_id === +formWatched.nacimiento_codigo,
   );
-  const watchedEmisionPasaporte = watch("pasaporte_lugar_emision");
   const findedEmisionPasaporte = guatemalaLocation.find(
-    (c) => c.city_id === +watchedEmisionPasaporte,
+    (c) => c.city_id === +formWatched.pasaporte_lugar_emision,
   );
   return (
     <>
@@ -59,7 +59,7 @@ export const AdminClientPage = () => {
               Ingrese la informacion personal del cliente
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <CardContent className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Field>
               <FieldLabel htmlFor="nombres">Nombres</FieldLabel>
               <Input
@@ -132,27 +132,27 @@ export const AdminClientPage = () => {
               <FieldLabel htmlFor="lugar_nacimiento">
                 Lugar de nacimiento
               </FieldLabel>
-              
-              {watchedNacimiento ? (
+
+              {formWatched.nacimiento_codigo ? (
                 <div>
                   {
                     <div className="flex items-center gap-2 w-full">
-                    <Input
-                      type="text"
-                      disabled
-                      className="flex-1"
-                      value={`${findedNacimiento?.city_name}, ${findedNacimiento?.state_name}`}
-                    />
-                  
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      className="h-10 w-10 shrink-0"
-                      onClick={() => setValue("nacimiento_codigo", "")}
-                    >
-                      <XIcon className="h-4 w-4" />
-                    </Button>
-                  </div>                  
+                      <Input
+                        type="text"
+                        disabled
+                        className="flex-1"
+                        value={`${findedNacimiento?.city_name}, ${findedNacimiento?.state_name}`}
+                      />
+
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="h-10 w-10 shrink-0"
+                        onClick={() => setValue("nacimiento_codigo", "")}
+                      >
+                        <XIcon className="h-4 w-4" />
+                      </Button>
+                    </div>
                   }
                 </div>
               ) : (
@@ -178,7 +178,9 @@ export const AdminClientPage = () => {
               )}
             </Field>
             <Field>
-              <FieldLabel htmlFor="pasaporte_numero">Numero de pasaporte</FieldLabel>
+              <FieldLabel htmlFor="pasaporte_numero">
+                Numero de pasaporte
+              </FieldLabel>
               <Input
                 type="number"
                 id="pasaporte_numero"
@@ -187,7 +189,9 @@ export const AdminClientPage = () => {
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="pasaporte_libreta">Numero de libreta</FieldLabel>
+              <FieldLabel htmlFor="pasaporte_libreta">
+                Numero de libreta
+              </FieldLabel>
               <Input
                 type="text"
                 id="pasaporte_libreta"
@@ -196,7 +200,9 @@ export const AdminClientPage = () => {
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="pasaporte_fecha_emision">Fecha de emision</FieldLabel>
+              <FieldLabel htmlFor="pasaporte_fecha_emision">
+                Fecha de emision
+              </FieldLabel>
               <Input
                 type="date"
                 id="pasaporte_fecha_emision"
@@ -204,7 +210,9 @@ export const AdminClientPage = () => {
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="pasaporte_fecha_expiracion">Fecha de expiracion</FieldLabel>
+              <FieldLabel htmlFor="pasaporte_fecha_expiracion">
+                Fecha de expiracion
+              </FieldLabel>
               <Input
                 type="date"
                 id="pasaporte_fecha_expiracion"
@@ -215,27 +223,27 @@ export const AdminClientPage = () => {
               <FieldLabel htmlFor="pasaporte_lugar_emision">
                 Lugar de emision de pasaporte
               </FieldLabel>
-              
+
               {findedEmisionPasaporte ? (
                 <div>
                   {
                     <div className="flex items-center gap-2 w-full">
-                    <Input
-                      type="text"
-                      disabled
-                      className="flex-1"
-                      value={`${findedEmisionPasaporte?.city_name}, ${findedEmisionPasaporte?.state_name}`}
-                    />
-                  
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      className="h-10 w-10 shrink-0"
-                      onClick={() => setValue("pasaporte_lugar_emision", "")}
-                    >
-                      <XIcon className="h-4 w-4" />
-                    </Button>
-                  </div>                  
+                      <Input
+                        type="text"
+                        disabled
+                        className="flex-1"
+                        value={`${findedEmisionPasaporte?.city_name}, ${findedEmisionPasaporte?.state_name}`}
+                      />
+
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="h-10 w-10 shrink-0"
+                        onClick={() => setValue("pasaporte_lugar_emision", "")}
+                      >
+                        <XIcon className="h-4 w-4" />
+                      </Button>
+                    </div>
                   }
                 </div>
               ) : (
@@ -261,7 +269,9 @@ export const AdminClientPage = () => {
               )}
             </Field>
             <Field>
-              <FieldLabel htmlFor="pasaporte_extraviado">¿Pasaporte extraviado?</FieldLabel>
+              <FieldLabel htmlFor="pasaporte_extraviado">
+                ¿Pasaporte extraviado?
+              </FieldLabel>
               <Input
                 type="text"
                 id="pasaporte_extraviado"
@@ -270,7 +280,9 @@ export const AdminClientPage = () => {
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="correo_electronico">Correo electronico</FieldLabel>
+              <FieldLabel htmlFor="correo_electronico">
+                Correo electronico
+              </FieldLabel>
               <Input
                 type="text"
                 id="correo_electronico"

@@ -14,8 +14,6 @@ export interface Client {
   sexo: string;
   fecha_nacimiento?: Date;
   estado_civil: string;
-  nacimiento_municipio: string;
-  nacimiento_departamento: string;
   nacimiento_codigo: string;
   paga_viaje_quien: string;
   paga_viaje_nombres: string;
@@ -24,8 +22,6 @@ export interface Client {
   paga_viaje_correo: string;
   paga_viaje_relacion: string;
   paga_viaje_direccion: string;
-  paga_viaje_municipio: string;
-  paga_viaje_departamento: string;
   paga_viaje_codigo: string;
   paga_viaje_viven_juntos: string;
   id_viajes_usa: UsaTravel[];
@@ -36,8 +32,6 @@ export interface Client {
   rechazo_descripcion: string;
   solicita_residencia_usa: boolean;
   residencia_direccion: string;
-  residencia_municipio: string;
-  residencia_departamento: string;
   residencia_codigo: string;
   telefonos: string[];
   trabajo_telefono: string;
@@ -64,16 +58,12 @@ export interface Client {
   conyuge_municipio_nacimiento: string;
   conyuge_departamento_nacimiento: string;
   conyuge_direccion: string;
-  conyuge_municipio: string;
-  conyuge_departamento: string;
   conyuge_codigo: string;
   conyuge_fecha_separacion: Date;
   conyuge_fecha_fallecimiento: Date;
   trabajo_tipo: string;
   trabajo_empresa: string;
   trabajo_direccion: string;
-  trabajo_municipio: string;
-  trabajo_departamento: string;
   trabajo_codigo: string;
   trabajo_salario: string;
   trabajo_fecha: Date;
@@ -85,8 +75,6 @@ export interface Client {
   educacion_fecha_inicio: Date;
   educacion_fecha_fin: Date;
   educacion_telefono: string;
-  educacion_municipio: string;
-  educacion_departamento: string;
   educacion_codigo: string;
   ultimos_viajes: string[];
   armas: string;
