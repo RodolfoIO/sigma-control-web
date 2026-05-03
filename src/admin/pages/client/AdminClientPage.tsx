@@ -4,10 +4,8 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -57,7 +55,6 @@ export type ClientForm = Omit<
 
 export const AdminClientPage = () => {
   const { id } = useParams();
-  const [data, setData] = useState<Client>();
   const [loading, setLoading] = useState(true);
 
   const { register, handleSubmit, control, watch, setValue, reset } =
@@ -83,8 +80,6 @@ export const AdminClientPage = () => {
     const loadClients = async () => {
       const client = await getClientByIdAction(id!);
 
-      setData(client);
-      console.log(client);
       reset({
         ...client,
         fecha_nacimiento: toDateInput(client.fecha_nacimiento),
