@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import AdminLayout from "./admin/layouts/AdminLayout";
 import { MainPage } from "./admin/pages/main/MainPage";
 import { ClientsPage } from "./admin/pages/clients/ClientsPage";
@@ -6,7 +6,7 @@ import { DashboardPage } from "./admin/pages/dashboard/DashboardPage";
 import { AppointmentsPage } from "./admin/pages/appointments/AppointmentsPage";
 import { AdminClientPage } from "./admin/pages/client/AdminClientPage";
 
-export const appRouter = createBrowserRouter([
+export const appRouter = createHashRouter([
     {
         path: "/",
         element: <AdminLayout />,
