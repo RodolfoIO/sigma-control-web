@@ -1,4 +1,10 @@
-import { CustomTable } from "@/admin/components/CustomTable";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+
+import { getClientsAction } from "@/admin/actions/get-clients.action";
+
+import type { ClientsResponse } from "@/interfaces/clients.response";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,31 +14,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link } from "react-router";
 import { SearchInput } from "@/admin/components/searchInput";
-import { getClientsAction } from "@/admin/actions/get-clients.action";
-import { useEffect, useState } from "react";
-import type { ClientsResponse } from "@/interfaces/clients.response";
 import { SkeletonTable } from "@/admin/components/SkeletonTable";
+import { CustomTable } from "@/admin/components/CustomTable";
 
 export const ClientsPage = () => {
   const [data, setData] = useState<ClientsResponse[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     const loadClients = async () => {
-      try {
-        const clients = await getClientsAction();
-        setData(clients);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+      const clients = await getClientsAction();
+      setData(clients);
+      setLoading(false);
     };
-
     loadClients();
   }, []);
+
+  const filteredData = data.filter((client) => {
+    const value = search.toLowerCase();
+
+    return (
+      client.nombres.toLowerCase().includes(value) ||
+      client.apellidos.toLowerCase().includes(value) ||
+      client.pasaporte_numero.toLowerCase().includes(value)
+    );
+  });
 
   return (
     <>
@@ -47,12 +55,8 @@ export const ClientsPage = () => {
           </CardAction>
         </CardHeader>
         <CardContent>
-          <SearchInput />
-          {loading ? (
-    <SkeletonTable />
-  ) : (
-    <CustomTable data={data} />
-  )}
+          <SearchInput onSearch={setSearch} />
+          {loading ? <SkeletonTable /> : <CustomTable data={filteredData} />}
         </CardContent>
       </Card>
     </>

@@ -5,12 +5,16 @@ import { ButtonGroup } from "@/components/ui/button-group";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-export function SearchInput() {
+type Props = {
+  onSearch: (value: string) => void;
+};
+
+export function SearchInput({ onSearch }: Props) {
   const searchInput = useRef<HTMLInputElement | null>(null);
 
   const search = () => {
-    const value = searchInput.current?.value;
-    console.log("Buscando:", value);
+    const value = searchInput.current?.value ?? "";
+    onSearch(value);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -33,4 +37,3 @@ export function SearchInput() {
     </Field>
   );
 }
-

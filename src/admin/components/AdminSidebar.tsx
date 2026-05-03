@@ -36,20 +36,21 @@ const items = [
 ]
 
 export const AdminSidebar = () => {
-  const user:Partial<User>= {
+  const user: Partial<User> = {
     nombres: "Fredy",
     apellidos: "Castillo",
     correo: "sigmainternet.info@gmail.com",
-    avatar: "/FREDY-CASTILLO.jpeg"
+    avatar: "/FREDY-CASTILLO.jpeg",
   }
-  return (
-    <Sidebar>
-      <SidebarHeader>
-        <div className="flex h-18 items-center justify-center border-b border-gray-200">
 
-        <h1 className="text-2xl">Sigma Internet</h1>
+  return (
+    <Sidebar collapsible="offcanvas">
+      <SidebarHeader>
+        <div className="flex h-18 items-center justify-center border-b">
+          <h1 className="text-2xl">Sigma Internet</h1>
         </div>
       </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Menu</SidebarGroupLabel>
@@ -69,6 +70,7 @@ export const AdminSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <UserAvatar user={user} />
       </SidebarFooter>
