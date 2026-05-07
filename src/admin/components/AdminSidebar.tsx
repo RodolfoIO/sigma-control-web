@@ -15,6 +15,7 @@ import {
 import { Link } from "react-router"
 import { UserAvatar } from "./UserAvatar"
 import type { User } from "@/interfaces/user.interface"
+import { useAuthStore } from "@/auth/store/auth.store"
 
 // Menu items.
 const items = [
@@ -36,12 +37,10 @@ const items = [
 ]
 
 export const AdminSidebar = () => {
-  const user: Partial<User> = {
-    nombres: "Fredy",
-    apellidos: "Castillo",
-    correo: "sigmainternet.info@gmail.com",
-    avatar: "/FREDY-CASTILLO.jpeg",
-  }
+
+  const user = useAuthStore((state) => state.user);
+
+
 
   return (
     <Sidebar collapsible="offcanvas">
@@ -72,7 +71,14 @@ export const AdminSidebar = () => {
       </SidebarContent>
 
       <SidebarFooter>
-        <UserAvatar user={user} />
+        <UserAvatar
+          user={{
+            nombres: user?.user_metadata?.nombres,
+            apellidos: user?.user_metadata?.apellidos,
+            correo: user?.email,
+            avatar: user?.user_metadata?.avatar,
+          }}
+        />
       </SidebarFooter>
     </Sidebar>
   )

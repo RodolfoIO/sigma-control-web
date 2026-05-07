@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/auth/store/auth.store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -22,6 +23,12 @@ export function UserAvatar({ user }: Props) {
   const { nombres, apellidos, avatar, correo } = user;
   const nombreCompleto = `${nombres} ${apellidos}`
   const { isMobile } = useSidebar();
+
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = async () => {
+    await logout();    
+  };
 
   return (
     <SidebarMenu>
@@ -51,7 +58,7 @@ export function UserAvatar({ user }: Props) {
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOutIcon />
               Log out
             </DropdownMenuItem>
